@@ -1,0 +1,43 @@
+#include "Hex.h"
+
+Hex::Hex(std::string s, int len){
+    buffer = new char [len+1];
+    if(isValid(s,len)){
+        s.copy(buffer,len+1);
+        length=len;
+
+    }
+}
+Hex::Hex(void) {
+    length=64;
+    buffer = new char[length+1];
+}
+Hex::~Hex(void) {
+    delete [] buffer;
+    buffer = 0;
+}
+
+bool Hex::isValid(std::string &s, int len) {
+    bool flag = true;
+    int temp;
+    for(int i=0; flag && i<len; i++){
+        temp =static_cast<int>(s[i]);
+        flag = (47<temp && temp<58) || (96<temp && temp<103);
+    }
+    return flag;
+}
+
+void Hex::init(std::string &s){
+    if(isValid(s, s.size())&& s.size()<=64){
+        length=s.size()+1;
+        s.copy(buffer,length+1);
+        
+    }
+}
+
+unsigned int Hex::getLength(void) const {
+    return length;
+}
+char* Hex::getBuffer(void) const {
+    return buffer;
+}

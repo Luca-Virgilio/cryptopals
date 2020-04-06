@@ -1,0 +1,22 @@
+#include <string>
+#ifndef Hex_H
+#define Hex_H
+
+
+class Hex {
+    unsigned int length;
+    char *buffer; 
+public:    
+    Hex(void);
+    Hex(std::string s, int len);
+    ~Hex(void);
+    bool isValid(std::string &s, int len);
+    void init(std::string &s);
+    unsigned int getLength(void) const;
+    char* getBuffer(void) const;
+
+
+};
+
+
+#endif
