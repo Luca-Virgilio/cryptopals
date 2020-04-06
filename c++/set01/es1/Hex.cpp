@@ -12,6 +12,28 @@ Hex::Hex(void) {
     length=64;
     buffer = new char[length+1];
 }
+Hex::Hex(const Hex& str){
+    length = str.getLength();
+    char *pointer = str.getBuffer();
+    buffer = new char[length+1];
+
+    for(int i=0; i<length; i++){
+        *(buffer+i)=*(pointer+i);
+    }
+}
+Hex&Hex::operator=(const Hex &Y){
+    if(&Y!=this){
+        length = Y.getLength();
+        char *pointer = Y.getBuffer();
+        buffer = new char[length+1];
+        
+        for(int i=0; i<length; i++){
+            *(buffer+i)=*(pointer+i);
+    }
+    }
+}
+
+
 Hex::~Hex(void) {
     delete [] buffer;
     buffer = 0;

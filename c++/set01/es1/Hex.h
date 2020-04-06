@@ -9,6 +9,8 @@ class Hex {
 public:    
     Hex(void);
     Hex(std::string s, int len);
+    Hex(const Hex& str);
+    Hex &operator=(const Hex &Y);
     ~Hex(void);
     bool isValid(std::string &s, int len);
     void init(std::string &s);
