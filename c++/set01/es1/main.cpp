@@ -1,7 +1,7 @@
 #include <iostream>
-#include <bitset>
 #include <string>
-#include "Hex.cpp"
+#include "Hex.h"
+#include "Buffer.h"
 
 using namespace std;
 
@@ -23,16 +23,23 @@ int main (int argc, char * argv[]){
     // cout << sss << endl;
 **/
 string str1="a13";
-string str2="app";
 
 Hex hex2; 
 Hex hex1(str1,str1.size());
-string str3 = "ff";
+string str3 = "a210ff";
 hex2.init(str3);
+Hex hex4=hex1;
+Hex hex5 (hex2);
+cout << hex2.getLength()<< endl;
+cout << hex2.getBuffer()<< endl;
+Buffer buffer;
+buffer.from(hex2);
+cout << buffer.getLength() << endl;
+cout << *(buffer.getPointer()) << ' ';
+cout << *(buffer.getPointer()+1) << ' ';
+cout << *(buffer.getPointer()+2) << ' ';
+cout << *(buffer.getPointer()+3) << endl;
 
-cout << hex1.getLength() << endl;
-cout << hex1.getBuffer() << endl;
-cout << hex2.getLength() << endl;
-cout << hex2.getBuffer() << endl;
+
     return 0;
 }

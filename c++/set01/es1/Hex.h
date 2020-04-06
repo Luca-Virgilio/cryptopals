@@ -1,7 +1,7 @@
-#include <string>
 #ifndef Hex_H
 #define Hex_H
-
+#include <string>
+#include "Hex.h"
 
 class Hex {
     unsigned int length;
@@ -16,6 +16,8 @@ public:
     void init(std::string &s);
     unsigned int getLength(void) const;
     char* getBuffer(void) const;
+    char &operator[](unsigned int i)const;
+
 
 
 };

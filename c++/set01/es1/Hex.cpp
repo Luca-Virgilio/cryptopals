@@ -1,16 +1,16 @@
 #include "Hex.h"
 
 Hex::Hex(std::string s, int len){
-    buffer = new char [len+1];
+    buffer = new char [len];
     if(isValid(s,len)){
-        s.copy(buffer,len+1);
+        s.copy(buffer,len);
         length=len;
 
     }
 }
 Hex::Hex(void) {
     length=64;
-    buffer = new char[length+1];
+    buffer = new char[length];
 }
 Hex::Hex(const Hex& str){
     length = str.getLength();
@@ -25,8 +25,8 @@ Hex&Hex::operator=(const Hex &Y){
     if(&Y!=this){
         length = Y.getLength();
         char *pointer = Y.getBuffer();
-        buffer = new char[length+1];
-        
+        buffer = new char[length];
+
         for(int i=0; i<length; i++){
             *(buffer+i)=*(pointer+i);
     }
@@ -52,7 +52,7 @@ bool Hex::isValid(std::string &s, int len) {
 void Hex::init(std::string &s){
     if(isValid(s, s.size())&& s.size()<=64){
         length=s.size()+1;
-        s.copy(buffer,length+1);
+        s.copy(buffer,length);
         
     }
 }
@@ -62,4 +62,7 @@ unsigned int Hex::getLength(void) const {
 }
 char* Hex::getBuffer(void) const {
     return buffer;
+}
+char &Hex::operator[](unsigned int i)const{
+    return *(buffer+i);
 }
