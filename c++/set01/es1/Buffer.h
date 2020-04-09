@@ -18,6 +18,7 @@ public:
     int getLength(void)const;
     byte* getPointer(void)const;
     void from(Hex &str);
+    std::string toBase64(void);
     
 };
 
