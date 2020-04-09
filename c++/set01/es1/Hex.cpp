@@ -9,7 +9,7 @@ Hex::Hex(std::string s, int len){
     }
 }
 Hex::Hex(void) {
-    length=64;
+    length=128;
     buffer = new char[length];
 }
 Hex::Hex(const Hex& str){
@@ -50,8 +50,8 @@ bool Hex::isValid(std::string &s, int len) {
 }
 
 void Hex::init(std::string &s){
-    if(isValid(s, s.size())&& s.size()<=64){
-        length=s.size()+1;
+    if(isValid(s, s.size())&& s.size()<=128){
+        length=s.size();
         s.copy(buffer,length);
         
     }
