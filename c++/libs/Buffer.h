@@ -19,8 +19,12 @@ public:
     ~Buffer(void);
     int getLength(void)const;
     byte* getPointer(void)const;
+    Buffer &operator=(const Buffer &Y);
+    byte &operator[](unsigned int i)const;
     void from(Hex &str);
-    std::string toBase64(void);
+    void from(const std::string &str);
+    std::string toBase64(void)const;
+    std::string toString(void)const;
     
 };
 

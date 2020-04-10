@@ -1,13 +1,17 @@
 #include "Buffer.h"
 
+/**************************  constructors and distructor   **************************/
+
 Buffer::Buffer(void){
     length = static_cast<uint>(0);
     pointer = new byte [64];
 }
+
 Buffer::~Buffer(void){
     delete [] pointer;
     pointer=NULL;
 }
+/**************************  getter and setter   **************************/
 
 int Buffer::getLength(void)const{
     return static_cast<int>(length);
@@ -15,6 +19,45 @@ int Buffer::getLength(void)const{
 Buffer::byte* Buffer::getPointer(void)const{
     return pointer;
 }
+
+/**************************  operator  **************************/
+
+Buffer&Buffer::operator=(const Buffer &Y){
+    if(&Y!=this){
+        length = Y.getLength();
+        byte *pointerY = Y.getPointer();
+        pointer = new byte[length];
+
+        for(uint i=0; i<length; i++){
+            *(pointer+i)=*(pointerY+i);
+        }
+    }
+    return *this;
+}
+
+Buffer::byte &Buffer::operator[](unsigned int i)const{
+    return *(pointer+i);
+}
+//**************************     methods     **************************//
+
+void Buffer::from(const std::string &str){
+    if(str.size()>64){
+        return ;
+    }
+    length = str.size();
+    const char *end, *pos;
+    pos = &str[0];
+    end = pos + length;
+    byte *out= pointer;
+
+    for( ; pos!=end; pos++){
+        *out = byte(static_cast<int>(*pos));
+        out++;
+    }
+
+}
+
+
 void Buffer::from(Hex &str){
     //to check
     length = (str.getLength()+1)/2;
@@ -53,7 +96,7 @@ int Buffer::hex_to_int(char c){
     return v;
 }
 
-std::string Buffer::toBase64(void){
+std::string Buffer::toBase64(void) const{
     static const unsigned char base64_encode[65] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     unsigned char *pos, *out;
     byte *end, *in;
@@ -95,3 +138,21 @@ std::string Buffer::toBase64(void){
 
     return outStr;
 }
+
+std::string Buffer::toString(void)const {
+    
+    std::string outStr;
+    outStr.resize(length);
+    char *out= &outStr[0];
+    byte *pos, *end;
+    pos = pointer;
+    end = pos + length;
+    while(end-pos==0){
+        *out=static_cast<char>((*pos).to_ulong());
+        pos++;
+        out++;
+    } 
+    return outStr;
+
+}
+
