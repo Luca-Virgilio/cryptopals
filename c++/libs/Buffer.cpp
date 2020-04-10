@@ -1,7 +1,7 @@
 #include "Buffer.h"
 
 Buffer::Buffer(void){
-    length = 0;
+    length = static_cast<uint>(0);
     pointer = new byte [64];
 }
 Buffer::~Buffer(void){
@@ -10,7 +10,7 @@ Buffer::~Buffer(void){
 }
 
 int Buffer::getLength(void)const{
-    return length;
+    return static_cast<int>(length);
 }
 Buffer::byte* Buffer::getPointer(void)const{
     return pointer;
@@ -18,10 +18,9 @@ Buffer::byte* Buffer::getPointer(void)const{
 void Buffer::from(Hex &str){
     //to check
     length = (str.getLength()+1)/2;
-    int b;
     //padding?
-    Buffer::byte *p_temp = pointer;
-    for(int i=0;i<str.getLength()-1;i=i+2){
+    byte *p_temp = pointer;
+    for(uint i=0;i<str.getLength();i=i+2){
         if(i+1<str.getLength()){
             *(p_temp)= char_to_byte(str[i],str[i+1]);
             p_temp++;
@@ -34,8 +33,8 @@ void Buffer::from(Hex &str){
 }
 
 Buffer::byte Buffer::char_to_byte(char c1, char c2){
-  Buffer::byte b1 (hex_to_int(c1));
-  Buffer::byte b2 (hex_to_int(c2));
+  byte b1 (hex_to_int(c1));
+  byte b2 (hex_to_int(c2));
   b1=b1<<4;
   //or?
   for (int i=0;i<4;i++){

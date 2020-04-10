@@ -8,8 +8,9 @@
 class Buffer {
 public:
     typedef std::bitset<8> byte;
+    // typedef unsigned int uint;
 private:    
-    int length;
+    uint length;
     byte *pointer;
     byte char_to_byte(char c1, char c2);
     int hex_to_int(char c);

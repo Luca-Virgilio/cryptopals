@@ -15,9 +15,9 @@ Hex::Hex(void) {
 Hex::Hex(const Hex& str){
     length = str.getLength();
     char *pointer = str.getBuffer();
-    buffer = new char[length+1];
+    buffer = new char[length];
 
-    for(int i=0; i<length; i++){
+    for(uint i=0; i<length; i++){
         *(buffer+i)=*(pointer+i);
     }
 }
@@ -27,10 +27,11 @@ Hex&Hex::operator=(const Hex &Y){
         char *pointer = Y.getBuffer();
         buffer = new char[length];
 
-        for(int i=0; i<length; i++){
+        for(uint i=0; i<length; i++){
             *(buffer+i)=*(pointer+i);
+        }
     }
-    }
+    return *this;
 }
 
 

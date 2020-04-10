@@ -3,7 +3,9 @@
 #include <string>
 
 class Hex {
-    unsigned int length;
+    // shoud be unsigned and cast all .cpp 
+    typedef unsigned int uint;
+    uint length;
     char *buffer; 
 public:    
     Hex(void);
