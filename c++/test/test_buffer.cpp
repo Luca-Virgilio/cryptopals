@@ -11,10 +11,16 @@ int main (int argc, char* argv[]){
     cout << "h1 length: " << h1.getLength() << endl;
     cout << "h1 Buffer: " << h1.getBuffer() << endl;
 
+    string s2="ciao";
     Buffer b;
-    b.from(h1);
+    b.from(s2);
     for(int i=0; i<b.getLength();i++){
-        cout << *(b.getPointer()+i);
+        cout << b[i];
+    }
+    cout << endl;
+    string test = b.toString();
+    if(s2.compare(test)){
+       cout << "toString correct"<<endl;
     }
     // Buffer bnull;
     // cout << "b length: " << bnull.getLength() << endl;
