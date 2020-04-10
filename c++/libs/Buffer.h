@@ -3,6 +3,7 @@
 #define Buffer_H
 #include "Hex.h"
 #include <bitset>
+#include <string>
 
 class Buffer {
 public:

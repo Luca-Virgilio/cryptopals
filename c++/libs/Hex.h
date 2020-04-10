@@ -1,7 +1,6 @@
 #ifndef Hex_H
 #define Hex_H
 #include <string>
-#include "Hex.h"
 
 class Hex {
     unsigned int length;
