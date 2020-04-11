@@ -25,6 +25,9 @@ public:
     void from(const std::string &str);
     std::string toBase64(void)const;
     std::string toString(void)const;
+    Hex toHex(void)const;
+    std::string toHexString(void)const;
+
     
 };
 

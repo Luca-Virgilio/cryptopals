@@ -147,10 +147,49 @@ std::string Buffer::toString(void)const {
     byte *pos, *end;
     pos = pointer;
     end = pos + length;
-    while(end-pos==0){
+    while(end-pos>0){
         *out=static_cast<char>((*pos).to_ulong());
         pos++;
         out++;
+    } 
+    return outStr;
+
+}
+
+Hex Buffer::toHex(void)const {
+    static const char encode_hex[17]= "0123456789abcdef";
+
+    std::string outStr;
+    outStr.resize(length*2);
+     char *out= &outStr[0];
+     char *start_out= out;
+    byte *pos, *end;
+    pos = pointer;
+    end = pos + length;
+    while(end-pos>0){
+        *out= encode_hex[(*pos >> 4).to_ulong()];
+        *(out+1)=  encode_hex[(*pos &= 0xf).to_ulong()];
+        pos++;
+        out=out+2;
+    } 
+    Hex res(start_out, length*2);
+    return res;
+}
+
+std::string Buffer::toHexString(void)const {
+    static const char encode_hex[17]= "0123456789abcdef";
+
+    std::string outStr;
+    outStr.resize(length*2);
+    char *out= &outStr[0];
+    byte *pos, *end;
+    pos = pointer;
+    end = pos + length;
+    while(end-pos>0){
+        *out= encode_hex[(*pos >> 4).to_ulong()];
+        *(out+1)=  encode_hex[(*pos &= 0xf).to_ulong()];
+        pos++;
+        out=out+2;
     } 
     return outStr;
 
